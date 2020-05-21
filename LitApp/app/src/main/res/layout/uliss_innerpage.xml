@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/uliss_innerpage_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/pl_Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/plugged"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="LinearLayoutManager" />
+
+    <TextView
+        android:id="@+id/npl_Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="30sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/others"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="LinearLayoutManager" />
+
+</LinearLayout>

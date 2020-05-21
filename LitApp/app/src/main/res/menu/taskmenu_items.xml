@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Text_data"
+        android:title="Задание" />
+    <item
+        android:id="@+id/Files_data"
+        android:title="Приложенные файлы" />
+</menu>

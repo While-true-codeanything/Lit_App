@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">LitApp</string>
+    <string name="Reglogin">Login</string>
+    <string name="Rpassword">Password</string>
+    <string name="Renter">Войти</string>
+    <string name="Sclass">Класс для расписания</string>
+    <string name="Syear">Учебный год</string>
+    <string name="Syou">Вы вошли как</string>
+    <string name="Squit">Выйти</string>
+    <string name="Sctinfo">Информация для связи с разработчиком</string>
+    <string name="Sconinfocontent">Привет! Меня зовут Павлов Егор, я ученик ЛИТа, если вы нашли какие-либо ошибки в работе приложения(вылеты, неправильное отображение), то вы можете написать мне на почту: \npavlov.egor@lit1533.ru</string>
+    <string-array name="Classes">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+    </string-array>
+    <string-array name="Group">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+</resources>
