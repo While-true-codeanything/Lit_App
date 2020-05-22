@@ -1,15 +1,10 @@
 package com.example.litapp.MainActivity.Utilities;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
-
 import android.content.Context;
 
 import com.example.litapp.MainActivity.DataClasses.Row;
 import com.example.litapp.MainActivity.DataClasses.Subject;
 import com.example.litapp.MainActivity.DataClasses.Task;
-import com.example.litapp.MainActivity.Utilities.DataUtility;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -17,11 +12,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
+
 public class NetworkUtility {
     private static Connection.Response acceser;
     private static Map<String, String> cookie;
 
-    public static String downloadDataFromUrl(){
+    public static String downloadDataFromUrl() {
         try {
             Document doc = Jsoup.connect("https://www.lit.msu.ru/").userAgent("Mozilla").get();
             Elements listNews = doc.select("ul.mdash");
@@ -32,7 +31,7 @@ public class NetworkUtility {
         return null;
     }
 
-    public static String downloadPictureidFromUrl(){
+    public static String downloadPictureidFromUrl() {
         try {
             Document doc = Jsoup.connect("https://www.lit.msu.ru").get();
             Elements img = doc.getElementsByTag("img");
@@ -176,6 +175,25 @@ public class NetworkUtility {
         return list;
     }
 
+    public static String[] getText(String ref, Context c) throws IOException {
+        Connection.Response acceser = Enter(c);
+        acceser = Jsoup.connect(ref)
+                .cookies(acceser.cookies())
+                .method(Connection.Method.GET)
+                .execute();
+        Elements all = acceser.parse().select("div.course-content-item-body").select("p");
+        if (all.size() == 2) {
+            String[] b = new String[1];
+            b[0] = "Нет текстовых пометок или файловых пометок";
+            return b;
+        }
+        String[] a = new String[all.size() - 3];
+        for (int i = 2; i < all.size() - 1; i++) {
+            a[i - 2] = all.get(i).toString();
+        }
+        return a;
+    }
+
     public static int Maxpage(String ref, Context c) throws IOException {
         Connection.Response acceser = Enter(c);
         acceser = Jsoup.connect(ref + "/?page=" + 1000)
@@ -203,20 +221,6 @@ public class NetworkUtility {
             tm = tm + all.get(0).text().split(" ")[i] + " ";
         }
         return tm;
-    }
-
-    public static String[] getText(String ref, Context c) throws IOException {
-        Connection.Response acceser = Enter(c);
-        acceser = Jsoup.connect(ref)
-                .cookies(acceser.cookies())
-                .method(Connection.Method.GET)
-                .execute();
-        Elements all = acceser.parse().select("div.course-content-item-body").select("p");
-        String[] a = new String[all.size() - 3];
-        for (int i = 2; i < all.size() - 1; i++) {
-            a[i - 2] = all.get(i).toString();
-        }
-        return a;
     }
 
     public static boolean CheckEnter(String login, String password) throws IOException {

@@ -3,6 +3,9 @@ package com.example.litapp.MainActivity.Utilities;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.security.crypto.EncryptedSharedPreferences;
+import androidx.security.crypto.MasterKeys;
+
 import java.util.Calendar;
 
 public class DataUtility {
@@ -55,7 +58,19 @@ public class DataUtility {
     SharedPreferences dtaccessor;
 
     public DataUtility(Context ct) {
-        dtaccessor = ct.getSharedPreferences(File, Context.MODE_PRIVATE);
+        try {
+            String masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
+            dtaccessor = ct.getSharedPreferences(File, Context.MODE_PRIVATE);
+            dtaccessor = EncryptedSharedPreferences.create(
+                    File,
+                    masterKeyAlias,
+                    ct,
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            );
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void setData(String s, String dataname) {
